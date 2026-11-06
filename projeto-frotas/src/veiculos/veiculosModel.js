@@ -1,13 +1,13 @@
-
+// Base de dados em memória para Veículos
 let veiculos = [
-  { id: 1, placa: "DQJ-7792", modelo: "Volvo FH 540", status: "disponivel" },
-  { id: 2, placa: "BET-6789", modelo: "Scania R450", status: "em_rota" }
+  { id: 1, placa: "ABC-1234", modelo: "Volvo FH 540", status: "disponivel" },
+  { id: 2, placa: "XYZ-5678", modelo: "Scania R450", status: "em_rota" }
 ];
 
 let proximoId = 3;
 
 module.exports = {
-  
+  // Retorna todos os veículos ou filtra por status
   listar: (status) => {
     if (status) {
       return veiculos.filter(v => v.status.toLowerCase() === status.toLowerCase());
@@ -15,8 +15,10 @@ module.exports = {
     return veiculos;
   },
 
+  // Busca veículo por ID
   buscarPorId: (id) => veiculos.find(v => v.id === parseInt(id)),
 
+  // Cria um novo veículo
   criar: (dados) => {
     const novoVeiculo = {
       id: proximoId++,
@@ -28,6 +30,7 @@ module.exports = {
     return novoVeiculo;
   },
 
+  // Atualiza veículo existente
   atualizar: (id, dados) => {
     const index = veiculos.findIndex(v => v.id === parseInt(id));
     if (index === -1) return null;
@@ -35,11 +38,12 @@ module.exports = {
     veiculos[index] = {
       ...veiculos[index],
       ...dados,
-      id: parseInt(id) 
+      id: parseInt(id) // Mantém o ID original
     };
     return veiculos[index];
   },
 
+  // Remove veículo
   deletar: (id) => {
     const index = veiculos.findIndex(v => v.id === parseInt(id));
     if (index === -1) return false;
