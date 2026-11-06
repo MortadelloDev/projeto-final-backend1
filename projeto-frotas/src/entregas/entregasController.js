@@ -1,7 +1,7 @@
 // Base de dados em memória para Entregas
 let entregas = [
-  { id: 1, veiculoId: 2, enderecoDestino: "Rua A, 123", status: "em_andamento" },
-  { id: 2, veiculoId: 1, enderecoDestino: "Av. B, 456", status: "pendente" }
+  { id: 1, veiculoId: 2, enderecoDestino: "Rua Belterra, 281", status: "em_andamento" },
+  { id: 2, veiculoId: 1, enderecoDestino: "Rua Alexandria, 86", status: "pendente" }
 ];
 
 let proximoId = 3;
