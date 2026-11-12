@@ -1,7 +1,7 @@
 // Base de dados em memória para Veículos
 let veiculos = [
-  { id: 1, placa: "ABC-1234", modelo: "Volvo FH 540", status: "disponivel" },
-  { id: 2, placa: "XYZ-5678", modelo: "Scania R450", status: "em_rota" }
+  { id: 1, placa: "BET-6700", modelo: "Volvo FH 540", status: "disponivel" },
+  { id: 2, placa: "SON-3456", modelo: "Scania R450", status: "em_rota" }
 ];
 
 let proximoId = 3;
