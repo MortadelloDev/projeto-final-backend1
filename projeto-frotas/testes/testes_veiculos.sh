@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_URL="http://localhost:3000/veiculos"
+BASE_URL="http://localhost:3030/veiculos"
 
 {
   echo "=========================================="
