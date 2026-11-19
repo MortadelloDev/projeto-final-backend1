@@ -1,25 +1,31 @@
 ==========================================
-  RELATÓRIO DE EXECUÇÃO DOS TESTES AUTOMÁTICOS
-  Data: Thu Nov 19 04:33:30 PM UTC 2026
+  RELATÓRIO DE EXECUÇÃO DOS TESTES DE ENTREGAS
+  Data: Thu Nov 19 04:41:32 PM UTC 2026
 ==========================================
 
-[TESTE 1] Criando um novo veículo (POST /veiculos):
-{"id":6,"placa":"ABC-1234","modelo":"Volkswagen Gol","status":"disponivel"}
+[TESTE 1] Criando uma nova entrega (POST /entregas):
+{"id":3,"veiculoId":2,"enderecoDestino":"Rua das Flores, 500","status":"pendente"}
 
 
-[TESTE 2] Listando todos os veículos (GET /veiculos):
-[{"id":2,"placa":"SON-3456","modelo":"Scania R450","status":"em_rota"},{"id":3,"placa":"XYZ-9876","modelo":"Fiat Uno","status":"disponivel"},{"id":4,"placa":"XYZ-9876","modelo":"Fiat Uno","status":"disponivel"},{"id":5,"placa":"XYZ-9876","modelo":"Fiat Uno","status":"disponivel"},{"id":6,"placa":"ABC-1234","modelo":"Volkswagen Gol","status":"disponivel"}]
+[TESTE 2] Listando todas as entregas (GET /entregas):
+[{"id":1,"veiculoId":2,"enderecoDestino":"Rua Belterra, 281","status":"em_andamento"},{"id":2,"veiculoId":1,"enderecoDestino":"Rua Alexandria, 86","status":"pendente"},{"id":3,"veiculoId":2,"enderecoDestino":"Rua das Flores, 500","status":"pendente"}]
 
-[TESTE 3] Buscando o veículo recém-criado pelo ID 6 (GET /veiculos/6):
-{"id":6,"placa":"ABC-1234","modelo":"Volkswagen Gol","status":"disponivel"}
+[TESTE 3] Filtrando entregas por status 'pendente' (GET /entregas?status=pendente):
+[{"id":2,"veiculoId":1,"enderecoDestino":"Rua Alexandria, 86","status":"pendente"},{"id":3,"veiculoId":2,"enderecoDestino":"Rua das Flores, 500","status":"pendente"}]
 
-[TESTE 4] Atualizando o status do veículo ID 6 (PUT /veiculos/6):
-{"id":6,"placa":"ABC-1234","modelo":"Volkswagen Gol","status":"em_manutencao"}
+[TESTE 4] Filtrando entregas pelo veiculoId 2 (GET /entregas?veiculoId=2):
+[{"id":1,"veiculoId":2,"enderecoDestino":"Rua Belterra, 281","status":"em_andamento"},{"id":3,"veiculoId":2,"enderecoDestino":"Rua das Flores, 500","status":"pendente"}]
 
-[TESTE 5] Deletando o veículo ID 6 (DELETE /veiculos/6):
-{"mensagem":"Veículo removido com sucesso"} | Status Code HTTP: 200
+[TESTE 5] Buscando a entrega pelo ID 3 (GET /entregas/3):
+{"id":3,"veiculoId":2,"enderecoDestino":"Rua das Flores, 500","status":"pendente"}
+
+[TESTE 6] Atualizando o status da entrega ID 3 (PUT /entregas/3):
+{"id":3,"veiculoId":2,"enderecoDestino":"Rua das Flores, 500","status":"em_andamento"}
+
+[TESTE 7] Deletando a entrega ID 3 (DELETE /entregas/3):
+ | Status Code HTTP: 204
 
 
 ==========================================
- TESTES CONCLUÍDOS!
+ TESTES DE ENTREGAS CONCLUÍDOS!
 ==========================================

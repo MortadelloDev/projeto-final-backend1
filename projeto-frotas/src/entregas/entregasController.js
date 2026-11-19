@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const entregasModel = require('./entregasModel');
 
 // Base de dados em memória para Entregas
 let entregas = [

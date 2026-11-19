@@ -1,51 +1,61 @@
 #!/bin/bash
 
-BASE_URL="http://localhost:3000/veiculos"
+BASE_URL="http://localhost:3000/entregas"
 
 {
   echo "=========================================="
-  echo "  RELATÓRIO DE EXECUÇÃO DOS TESTES AUTOMÁTICOS"
+  echo "  RELATÓRIO DE EXECUÇÃO DOS TESTES DE ENTREGAS"
   echo "  Data: $(date)"
   echo "=========================================="
   echo ""
 
-  # 1. Testando POST (Criar novo) primeiro para garantir que existe um registro
-  echo "[TESTE 1] Criando um novo veículo (POST /veiculos):"
+  # 1. CREATE (POST /entregas)
+  echo "[TESTE 1] Criando uma nova entrega (POST /entregas):"
   RESPOSTA_POST=$(curl -s -X POST "$BASE_URL" \
        -H "Content-Type: application/json" \
-       -d '{"placa": "ABC-1234", "modelo": "Volkswagen Gol", "status": "disponivel"}')
+       -d '{"veiculoId": 2, "enderecoDestino": "Rua das Flores, 500", "status": "pendente"}')
   echo "$RESPOSTA_POST"
   echo -e "\n"
 
-  # Extrai o ID dinâmico do veículo recém-criado
+  # Extrai o ID dinâmico da entrega recém-criada
   NOVO_ID=$(echo "$RESPOSTA_POST" | node -pe "JSON.parse(require('fs').readFileSync(0, 'utf-8')).id")
 
-  # 2. Testando GET (Listar todos - já deve mostrar o veículo criado acima)
-  echo "[TESTE 2] Listando todos os veículos (GET /veiculos):"
+  # 2. READ ALL (GET /entregas)
+  echo "[TESTE 2] Listando todas as entregas (GET /entregas):"
   curl -s -X GET "$BASE_URL"
   echo -e "\n"
 
-  # 3. Testando GET por ID (usando o NOVO_ID)
-  echo "[TESTE 3] Buscando o veículo recém-criado pelo ID $NOVO_ID (GET /veiculos/$NOVO_ID):"
+  # 3. READ FILTERED BY STATUS (GET /entregas?status=pendente)
+  echo "[TESTE 3] Filtrando entregas por status 'pendente' (GET /entregas?status=pendente):"
+  curl -s -X GET "$BASE_URL?status=pendente"
+  echo -e "\n"
+
+  # 4. READ FILTERED BY VEICULO (GET /entregas?veiculoId=2)
+  echo "[TESTE 4] Filtrando entregas pelo veiculoId 2 (GET /entregas?veiculoId=2):"
+  curl -s -X GET "$BASE_URL?veiculoId=2"
+  echo -e "\n"
+
+  # 5. READ ONE (GET /entregas/:id)
+  echo "[TESTE 5] Buscando a entrega pelo ID $NOVO_ID (GET /entregas/$NOVO_ID):"
   curl -s -X GET "$BASE_URL/$NOVO_ID"
   echo -e "\n"
 
-  # 4. Testando PUT (Atualizar o NOVO_ID)
-  echo "[TESTE 4] Atualizando o status do veículo ID $NOVO_ID (PUT /veiculos/$NOVO_ID):"
+  # 6. UPDATE (PUT /entregas/:id)
+  echo "[TESTE 6] Atualizando o status da entrega ID $NOVO_ID (PUT /entregas/$NOVO_ID):"
   curl -s -X PUT "$BASE_URL/$NOVO_ID" \
        -H "Content-Type: application/json" \
-       -d '{"status": "em_manutencao"}'
+       -d '{"status": "em_andamento"}'
   echo -e "\n"
 
-  # 5. Testando DELETE (Remover o NOVO_ID)
-  echo "[TESTE 5] Deletando o veículo ID $NOVO_ID (DELETE /veiculos/$NOVO_ID):"
+  # 7. DELETE (DELETE /entregas/:id)
+  echo "[TESTE 7] Deletando a entrega ID $NOVO_ID (DELETE /entregas/$NOVO_ID):"
   curl -s -X DELETE "$BASE_URL/$NOVO_ID" -w " | Status Code HTTP: %{http_code}"
   echo -e "\n\n"
 
   echo "=========================================="
-  echo " TESTES CONCLUÍDOS!"
+  echo " TESTES DE ENTREGAS CONCLUÍDOS!"
   echo "=========================================="
 
 } > resultado_execucao.log 2>&1
 
-echo "Testes concluídos! O relatório foi salvo em 'resultado_execucao.log'."
+echo "Testes de entregas concluídos! O relatório foi salvo em 'resultado_execucao.log'."
