@@ -1,0 +1,25 @@
+==========================================
+  RELATÓRIO DE EXECUÇÃO DOS TESTES AUTOMÁTICOS
+  Data: Thu Nov 19 04:33:30 PM UTC 2026
+==========================================
+
+[TESTE 1] Criando um novo veículo (POST /veiculos):
+{"id":6,"placa":"ABC-1234","modelo":"Volkswagen Gol","status":"disponivel"}
+
+
+[TESTE 2] Listando todos os veículos (GET /veiculos):
+[{"id":2,"placa":"SON-3456","modelo":"Scania R450","status":"em_rota"},{"id":3,"placa":"XYZ-9876","modelo":"Fiat Uno","status":"disponivel"},{"id":4,"placa":"XYZ-9876","modelo":"Fiat Uno","status":"disponivel"},{"id":5,"placa":"XYZ-9876","modelo":"Fiat Uno","status":"disponivel"},{"id":6,"placa":"ABC-1234","modelo":"Volkswagen Gol","status":"disponivel"}]
+
+[TESTE 3] Buscando o veículo recém-criado pelo ID 6 (GET /veiculos/6):
+{"id":6,"placa":"ABC-1234","modelo":"Volkswagen Gol","status":"disponivel"}
+
+[TESTE 4] Atualizando o status do veículo ID 6 (PUT /veiculos/6):
+{"id":6,"placa":"ABC-1234","modelo":"Volkswagen Gol","status":"em_manutencao"}
+
+[TESTE 5] Deletando o veículo ID 6 (DELETE /veiculos/6):
+{"mensagem":"Veículo removido com sucesso"} | Status Code HTTP: 200
+
+
+==========================================
+ TESTES CONCLUÍDOS!
+==========================================

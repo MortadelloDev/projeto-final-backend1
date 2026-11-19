@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const VeiculosModel = require('./veiculosModel');
 
+
 // GET /veiculos - Lista veículos (suporta Query Params ex: ?status=disponivel)
 router.get('/', (req, res) => {
   const { status } = req.query;

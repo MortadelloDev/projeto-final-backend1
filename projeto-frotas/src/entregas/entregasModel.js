@@ -7,6 +7,7 @@ let entregas = [
 let proximoId = 3;
 
 // Retorna todas as entregas com suporte a query params (status ou veiculoId)
+module.exports = router;
 
 module.exports = {
   listar: (filtros) => {

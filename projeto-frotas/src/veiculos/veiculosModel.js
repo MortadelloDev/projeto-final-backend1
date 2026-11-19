@@ -5,7 +5,6 @@ let veiculos = [
 ];
 
 let proximoId = 3;
-
 module.exports = {
   // Retorna todos os veículos ou filtra por status
   listar: (status) => {
